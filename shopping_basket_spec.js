@@ -52,11 +52,10 @@ describe('Shopping Basket', function(){
    assert.deepEqual({beans:{count:2, price:20}}, result)
   });
 
-  it('should return discount of 20', function(){
-    var bogof_items = shopping_basket.bogof();
-    var result = shopping_basket.bogof_lookup(bogof_items);
-   var result1 = shopping_basket.bogof_reduction(result);
-   assert.deepEqual(20, result1);
+  it('should be 22', function(){
+    shopping_basket.add_item(beans)
+    result = shopping_basket.discount_price();
+    assert.deepEqual(37.8, result);
   });
 
   
