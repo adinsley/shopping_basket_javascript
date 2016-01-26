@@ -13,6 +13,11 @@ var bread = {
   bogof: false
 }
 
+var discount_card = function(price){
+    newPrice = price * 0.95;
+    return newPrice;
+}
+
 
 describe('Shopping Basket', function(){
   it('should be empty array at start', function(){
@@ -30,6 +35,10 @@ describe('Shopping Basket', function(){
   it('discounted price should be 19.8 with only one item', function(){
     shopping_basket.add_item(bread)
     assert.equal(19.8, shopping_basket.discount_price());
+  });
+
+  it('price with discount card should be  with only one item', function(){
+    assert.equal(18.81, discount_card(shopping_basket.discount_price()));
   });
 
 
