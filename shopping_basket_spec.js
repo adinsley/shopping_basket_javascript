@@ -2,7 +2,7 @@ var shopping_basket = require('./shopping_basket');
 var assert = require('assert');
 
 var beans = {
-  name: "baked beans",
+  name: "beans",
   price: 20,
   bogof: true
 };
@@ -14,7 +14,7 @@ var bread = {
 }
 
 var discount_card = function(normalPrice){
-   var newPrice = normalprice * 0.95;
+   var newPrice = normalPrice * 0.95;
     return newPrice;
 }
 
@@ -25,7 +25,7 @@ describe('Shopping Basket', function(){
   });
   it('first item name should be baked beans and price should be 1', function(){
     shopping_basket.add_item(beans)
-    assert.equal("baked beans", shopping_basket.items[0].name);
+    assert.equal("beans", shopping_basket.items[0].name);
     assert.equal(20, shopping_basket.items_price());
   });
   it('discounted price should be 18 with only one item', function(){
@@ -41,6 +41,23 @@ describe('Shopping Basket', function(){
     assert.equal(18.81, discount_card(shopping_basket.discount_price()));
   });
 
+  it('should return array with 2 x beans', function(){
+    shopping_basket.add_item(beans)
+    assert.deepEqual([beans, beans], shopping_basket.bogof());
+  });
+
+  it('should return count with 2 x beans', function(){
+   var bogof_items = shopping_basket.bogof();
+   var result = shopping_basket.bogof_lookup(bogof_items);
+   assert.deepEqual({beans:{count:2, price:20}}, result)
+  });
+
+  it('should return discount of 20', function(){
+    var bogof_items = shopping_basket.bogof();
+    var result = shopping_basket.bogof_lookup(bogof_items);
+   var result1 = shopping_basket.bogof_reduction(result);
+   assert.deepEqual(20, result1);
+  });
 
   
 });
