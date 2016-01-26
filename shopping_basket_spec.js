@@ -5,6 +5,12 @@ var beans = {
   name: "baked beans",
   price: 20,
   bogof: true
+};
+
+var bread = {
+  name: "bread",
+  price: 2,
+  bogof: false
 }
 
 
@@ -17,8 +23,15 @@ describe('Shopping Basket', function(){
     assert.equal("baked beans", shopping_basket.items[0].name);
     assert.equal(20, shopping_basket.items_price());
   });
-  it('discounted price should be 1', function(){
+  it('discounted price should be 18 with only one item', function(){
     assert.equal(18, shopping_basket.discount_price());
   });
+
+  it('discounted price should be 19.8 with only one item', function(){
+    shopping_basket.add_item(bread)
+    assert.equal(19.8, shopping_basket.discount_price());
+  });
+
+
   
 });
