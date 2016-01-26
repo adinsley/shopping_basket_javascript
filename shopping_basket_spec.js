@@ -13,8 +13,8 @@ var bread = {
   bogof: false
 }
 
-var discount_card = function(price){
-    newPrice = price * 0.95;
+var discount_card = function(normalPrice){
+   var newPrice = normalprice * 0.95;
     return newPrice;
 }
 
